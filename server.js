@@ -18,7 +18,7 @@ const httpServer = new createServer(app);
 const io = new Server(httpServer);
 const PORT = process.env.PORT || 4000;
 
-const botName = "chatCord Bot";
+const botName = "LiveChat Bot";
 
 
 app.get("/", (req, res) => {
@@ -35,7 +35,7 @@ io.on("connection", (socket) => {
     socket.join(user.room);
 
     // Greet new user
-    socket.emit("message", formatMessage(botName, "Welcome to ChatCord... !!"));
+    socket.emit("message", formatMessage(botName, "Welcome to LiveChat... !! : ) "));
 
     // Brodcast when new user joined
     socket.broadcast

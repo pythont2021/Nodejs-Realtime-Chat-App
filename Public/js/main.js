@@ -1,10 +1,9 @@
-console.log("connected to main.js");
+// console.log("connected to main.js");
 // Get elements
 const chatForm = document.getElementById("chat-form");
 const chatMessage = document.querySelector(".chat-messages");
-const roomName = document.getElementById("room-name")
-const roomUsers = document.getElementById("users")
-
+const roomName = document.getElementById("room-name");
+const roomUsers = document.getElementById("users");
 
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
@@ -18,7 +17,7 @@ socket.emit("joinRoom", { username, room });
 
 // Message from server
 socket.on("message", (message) => {
-  console.log(message);
+  // console.log(message);
   // Display message
   outputMessages(message);
 
@@ -55,13 +54,18 @@ function outputMessages(message) {
   document.querySelector(".chat-messages").appendChild(div);
 }
 
-// Add room to DOM 
-function  outputRoomName(room){
- roomName.innerHTML = room
-};
+// Add room to DOM
+function outputRoomName(room) {
+  roomName.innerHTML = room;
+}
 
 // Add users to DOM
 
-function outputRoomUsers(users){
-roomUsers.innerHTML = `${users.map(user => `<li>${user.username}</li>`).join('')}`
+function outputRoomUsers(users) {
+  roomUsers.innerHTML = `${users
+    .map(
+      (user) =>
+        `<li> <i class="fas fa-circle status"></i> ${user.username}</li>`
+    )
+    .join("")}`;
 }
